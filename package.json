@@ -1,0 +1,47 @@
+{
+  "name": "fluxible-action-utils",
+  "description": "utility methods to aid in writing actions for fluxible based applications.",
+  "version": "0.1.0",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:yahoo/fluxible-action-utils.git#master"
+  },
+  "scripts": {
+    "devtest": "mocha tests/unit --recursive --reporter spec",
+    "test": "istanbul cover --dir artifacts -- _mocha tests/unit --recursive --reporter tap"
+  },
+  "dependencies": {
+    "async": "^0.9.0"
+  },
+  "devDependencies": {
+    "chai": "^1.10",
+    "istanbul": "^0.3.5",
+    "mocha": "^2.0",
+    "precommit-hook": "^1.0",
+    "webpack": "^1.0"
+  },
+  "author": "Mo Kouli <mkouli@yahoo-inc.com>",
+  "contributors": [
+    {
+      "name": "Daniel Hood",
+      "email": "dhood@yahoo-inc.com"
+    }
+  ],
+  "licenses": [
+    {
+      "type": "BSD",
+      "url": "https://github.com/yahoo/fluxible-action-utils/blob/master/LICENSE.md"
+    }
+  ],
+  "keywords": [
+    "yahoo",
+    "flux",
+    "fluxible",
+    "async",
+    "react"
+  ],
+  "precommit": [
+    "devtest"
+  ]
+}
