@@ -1,5 +1,11 @@
 # fluxible-action-utils
 
+[![npm version](https://badge.fury.io/js/fluxible-action-utils.svg)](http://badge.fury.io/js/fluxible-action-utils)
+[![Build Status](https://travis-ci.org/yahoo/fluxible-action-utils.svg?branch=master)](https://travis-ci.org/yahoo/fluxible-action-utils)
+[![Dependency Status](https://david-dm.org/yahoo/fluxible-action-utils.svg)](https://david-dm.org/yahoo/fluxible-action-utils)
+[![devDependency Status](https://david-dm.org/yahoo/fluxible-action-utils/dev-status.svg)](https://david-dm.org/yahoo/fluxible-action-utils#info=devDependencies)
+[![Coverage Status](https://coveralls.io/repos/yahoo/fluxible-action-utils/badge.png?branch=master)](https://coveralls.io/r/yahoo/fluxible-action-utils?branch=master)
+
 utility methods to aid in writing [actions](http://fluxible.io/api/fluxible-context.html#executeaction-action-payload-callback-) for [fluxible](http://fluxible.io) based applications.
 
 ## Links
