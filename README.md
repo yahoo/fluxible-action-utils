@@ -38,13 +38,13 @@ Example
 // initHome.js
 
 var actionUtils = require('fluxible-action-utils');
-var UserStore = require('touchdown-v2/stores/UserStore');
+var UserStore = require('app/stores/UserStore');
 
 module.exports = function initHome(context, params, done) {
     actionUtils.executeMultiple(context, {
         loadUH: require('UH').actions.load,
         loadUser: {
-            action: require('touchdown-v2/actions/loadUser'),
+            action: require('app/actions/loadUser'),
             isCritical: true
         },
         loadStuffForUser: [
