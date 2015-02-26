@@ -2,7 +2,7 @@
 
 'use strict';
 
-var ROOT_DIR = require('path').resolve(__dirname + '/../../..');
+var ROOT_DIR = require('path').resolve(__dirname, '../../..');
 var async = require('async');
 var expect = require('chai').expect;
 

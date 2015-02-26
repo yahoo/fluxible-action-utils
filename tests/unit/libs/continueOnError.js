@@ -2,7 +2,7 @@
 
 'use strict';
 
-var ROOT_DIR = require('path').resolve(__dirname + '/../../..');
+var ROOT_DIR = require('path').resolve(__dirname, '../../..');
 
 var expect = require('chai').expect;
 var continueOnError = require(ROOT_DIR + '/libs/continueOnError.js');

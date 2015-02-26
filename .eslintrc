@@ -1,0 +1,13 @@
+{
+    "env": {
+        "node": true,
+        "browser": true
+    },
+
+    "rules": {
+        "quotes": ["single"],
+        "no-unused-vars": [{ "args": "none" }],
+        "no-underscore-dangle": 0,
+        "no-unused-expressions": 1
+    }
+}
