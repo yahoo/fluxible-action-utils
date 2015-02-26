@@ -35,7 +35,7 @@ describe('index', function () {
         };
 
         webpack(config, function (err, stats) {
-            expect(err).to.be.null();
+            expect(err).to.equal(null);
             require([config.output.path, config.output.filename].join('/'));
             done();
         });
