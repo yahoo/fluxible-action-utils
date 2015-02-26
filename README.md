@@ -22,9 +22,9 @@ Utility method used to execute multiple actions in parallel where possible. Each
 
 `actions[task]` can be one of the following
 
-1. {FluxAction} an action to be executed
+1. {FluxAction} an action to be executed, **cannot** be critical **nor** require params
 2. {Object} an action "object" with the follwing properties
-    1. `action` {FluxAction} the action to execute, **cannot** be critical **nor** require params
+    1. `action` {FluxAction} the action to execute
     1. `[isCritical=false]` {Boolean} whether the action is **critical**
     2. `[params]` {Any} parameters to pass to the action when executing it
 3. {Array} {String, String, ..., FluxAction|Object} array which defines the tasks/actions that need to be executed before executing the action of type *1.* or *2.* found at the end of the array.
