@@ -11,7 +11,8 @@
     "cover": "istanbul cover --dir artifacts -- _mocha tests/unit --recursive --reporter tap",
     "devtest": "mocha tests/unit --recursive --reporter spec",
     "lint": "grunt lint",
-    "test": "npm run lint && npm run cover"
+    "style": "jscs .",
+    "test": "npm run lint && npm run style && npm run cover"
   },
   "dependencies": {
     "async": "^0.9.0"
@@ -22,6 +23,7 @@
     "grunt": "^0.4",
     "grunt-eslint": "^7.0",
     "istanbul": "^0.3.5",
+    "jscs": "^1.0",
     "load-grunt-tasks": "^3.0",
     "mocha": "^2.0",
     "precommit-hook": "^1.0",
@@ -49,6 +51,7 @@
   ],
   "precommit": [
     "lint",
+    "style",
     "devtest"
   ]
 }
