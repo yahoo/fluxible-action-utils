@@ -52,7 +52,7 @@ describe('fluxible-action-utils', function () {
             var task = actionUtils.toAsyncTask(mockAction(mockError, undefined, mockParams), mockContext, mockParams);
 
             task(function (err, data) {
-                expect(err).to.not.exist();
+                expect(err).to.not.exist;
                 expect(data).to.be.an('object').and.have.property('err', mockError);
                 done();
             });
@@ -122,7 +122,7 @@ describe('fluxible-action-utils', function () {
             };
 
             actionUtils.executeMultiple(mockContext, tasks, function (err, results) {
-                expect(err).to.not.exist();
+                expect(err).to.not.exist;
                 expect(results).to.be.an('object').and.deep.equal({
                     foo: 'foo',
                     bar: 'bar',
@@ -162,7 +162,7 @@ describe('fluxible-action-utils', function () {
 
             function run (cb) {
                 actionUtils.executeMultiple(mockContext, tasks, function (err, results) {
-                    expect(err).to.not.exist();
+                    expect(err).to.not.exist;
                     expect(results).to.be.an('object').and.deep.equal({
                         foo: 'foo',
                         bar: 'bar',
@@ -203,13 +203,13 @@ describe('fluxible-action-utils', function () {
                 };
 
                 actionUtils.executeMultiple(mockContext, tasks, function (err, results) {
-                    expect(err).to.exist().and.deep.equal({
+                    expect(err).to.exist.and.deep.equal({
                         foo: mockError
                     });
 
                     expect(results).to.be.an('object').and.have.property('baz', 'baz');
-                    expect(results).to.not.have.property('foo');
-                    expect(results).to.not.have.property('bar');
+                    expect(results.foo).to.not.be.ok;
+                    expect(results.bar).to.not.be.ok;
 
                     done();
                 });
@@ -288,7 +288,7 @@ describe('fluxible-action-utils', function () {
             };
 
             actionUtils.executeCritical(mockContext, tasks, function (err, results) {
-                expect(err).to.not.exist();
+                expect(err).to.not.exist;
                 expect(results).to.be.an('object').and.deep.equal({
                     foo: 'foo',
                     bar: 'bar',
@@ -322,13 +322,13 @@ describe('fluxible-action-utils', function () {
                 };
 
                 actionUtils.executeCritical(mockContext, tasks, function (err, results) {
-                    expect(err).to.exist().and.deep.equal({
+                    expect(err).to.exist.and.deep.equal({
                         foo: mockError
                     });
 
                     expect(results).to.be.an('object').and.have.property('baz', 'baz');
-                    expect(results).to.not.have.property('foo');
-                    expect(results).to.not.have.property('bar');
+                    expect(results.foo).to.not.be.ok;
+                    expect(results.bar).to.not.be.ok;
 
                     done();
                 });
