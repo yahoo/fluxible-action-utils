@@ -6,6 +6,8 @@
 [![devDependency Status](https://david-dm.org/yahoo/fluxible-action-utils/dev-status.svg)](https://david-dm.org/yahoo/fluxible-action-utils#info=devDependencies)
 [![Coverage Status](https://coveralls.io/repos/yahoo/fluxible-action-utils/badge.svg)](https://coveralls.io/r/yahoo/fluxible-action-utils)
 
+[![Join the chat at https://gitter.im/yahoo/fluxible-action-utils](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/yahoo/fluxible-action-utils?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 utility methods to aid in writing [actions](http://fluxible.io/api/fluxible-context.html#executeaction-action-payload-callback-) for [fluxible](http://fluxible.io) based applications.
 
 ## Links
