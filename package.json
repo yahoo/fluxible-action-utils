@@ -10,9 +10,8 @@
   "scripts": {
     "cover": "istanbul cover --dir artifacts -- _mocha tests/unit --recursive --reporter tap",
     "devtest": "mocha tests/unit --recursive --reporter spec",
-    "lint": "grunt lint",
-    "style": "jscs .",
-    "test": "npm run lint && npm run style && npm run cover"
+    "lint": "eslint .",
+    "test": "npm run lint && npm run cover"
   },
   "dependencies": {
     "async": "^0.9.0"
@@ -20,12 +19,8 @@
   "devDependencies": {
     "chai": "^2.0",
     "coveralls": "^2.11.1",
-    "grunt": "^0.4",
-    "grunt-cli": "^0.1.0",
-    "grunt-eslint": "^7.0",
+    "eslint": "^0.15.0",
     "istanbul": "^0.3.5",
-    "jscs": "^1.0",
-    "load-grunt-tasks": "^3.0",
     "mocha": "^2.0",
     "precommit-hook": "^1.0",
     "webpack": "^1.0"
@@ -52,7 +47,6 @@
   ],
   "precommit": [
     "lint",
-    "style",
     "devtest"
   ]
 }

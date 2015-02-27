@@ -16,6 +16,11 @@ describe('fluxible-action-utils', function () {
         }
     };
 
+    var mockError = {
+        status: 400,
+        message: 'Bad Request'
+    };
+
     function mockAction (err, data, expectedParams) {
         return function (context, params, done) {
             expect(context).to.equal(mockContext);
@@ -23,11 +28,6 @@ describe('fluxible-action-utils', function () {
             done(err, data);
         };
     }
-
-    var mockError = {
-        status: 400,
-        message: 'Bad Request'
-    };
 
     before(function () {
         actionUtils = require(ROOT_DIR + '/libs/fluxible-action-utils');

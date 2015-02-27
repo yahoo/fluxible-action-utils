@@ -7,17 +7,17 @@ var expect = require('chai').expect;
 var webpack = require('webpack');
 
 describe('index', function () {
-    var index;
-
-    before(function () {
-        index = require(ROOT_DIR);
-    });
-
     var SUPPORTED_METHODS = [
         'toAsyncTask',
         'executeMultiple',
         'executeCritical'
     ];
+
+    var index;
+
+    before(function () {
+        index = require(ROOT_DIR);
+    });
 
     it('should support ' + SUPPORTED_METHODS.join(', '), function () {
         SUPPORTED_METHODS.forEach(function (method) {
