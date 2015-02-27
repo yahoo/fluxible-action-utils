@@ -17,7 +17,7 @@
  *
  * @return {Function} returns the wrapped callback
  */
-module.exports = function createCriticalCB(cb, taskName) {
+module.exports = function createCriticalCB (cb, taskName) {
     return function (err, data) {
         var wrapper = null;
 

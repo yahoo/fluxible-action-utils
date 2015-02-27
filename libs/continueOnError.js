@@ -21,7 +21,7 @@ var DEFAULT_ERROR_PROPERTY = 'err';
  *
  * @return {Function}                 A callback function that will never callback with error.
  */
-module.exports = function continueOnError(errProp, cb) {
+module.exports = function continueOnError (errProp, cb) {
     if (!cb) {
         cb = errProp;
         errProp = DEFAULT_ERROR_PROPERTY;

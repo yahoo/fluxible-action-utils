@@ -8,8 +8,10 @@
     "url": "git@github.com:yahoo/fluxible-action-utils.git#master"
   },
   "scripts": {
+    "cover": "istanbul cover --dir artifacts -- _mocha tests/unit --recursive --reporter tap",
     "devtest": "mocha tests/unit --recursive --reporter spec",
-    "test": "istanbul cover --dir artifacts -- _mocha tests/unit --recursive --reporter tap"
+    "lint": "eslint .",
+    "test": "npm run lint && npm run cover"
   },
   "dependencies": {
     "async": "^0.9.0"
@@ -17,6 +19,7 @@
   "devDependencies": {
     "chai": "^2.0",
     "coveralls": "^2.11.1",
+    "eslint": "^0.15.0",
     "istanbul": "^0.3.5",
     "mocha": "^2.0",
     "precommit-hook": "^1.0",
@@ -43,6 +46,7 @@
     "react"
   ],
   "precommit": [
+    "lint",
     "devtest"
   ]
 }
