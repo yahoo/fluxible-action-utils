@@ -38,7 +38,7 @@ var executeMultiple = require('fluxible-action-utils/async/executeMultiple');
 
 :rotating_light: **WARNING** :rotating_light:
 
-Methods inside the `internals` directory/category are not explicitely exported and are considered unstable. 
+Methods inside the `internals` directory/category are not explicitely exported and are considered unstable.
 
 require externally at your own risk as breaking changes inside `internals` will not be considered `breaking` for the library.
 
@@ -48,6 +48,8 @@ require externally at your own risk as breaking changes inside `internals` will 
 * [`async`](#async)
     - [`executeMultiple`](#executemultiple-context-actions-done)
     - [`exectueCritical`](#executecritical-context-actions-done)
+* [`mixins`](#mixins)
+    - [`PeriodicActions`](#PeriodicActions)
 
 ===
 
@@ -58,7 +60,7 @@ require externally at your own risk as breaking changes inside `internals` will 
 var asyncActionUtils = require('fluxible-action-utils/async');
 ```
 
-Methods grouped under the `async` category are concerned with providing methods that aid in managing the asynchronous control flow of [`fluxible`](http://fluxible.io) actions. 
+Methods grouped under the `async` category are concerned with providing methods that aid in managing the asynchronous control flow of [`fluxible`](http://fluxible.io) actions.
 
 [async.auto](https://github.com/caolan/async#autotasks-callback) is used under the hood to do the actual heavy lifting (thanks to [@caolan](https://github.com/caolan))
 
@@ -69,7 +71,7 @@ Methods grouped under the `async` category are concerned with providing methods 
 var executeMultiple = require('fluxible-action-utils/async/executeMultiple');
 ```
 
-Utility method used to execute multiple actions in parallel where possible. Each key in `actions` represents a `task` to be executed (and should be unique). 
+Utility method used to execute multiple actions in parallel where possible. Each key in `actions` represents a `task` to be executed (and should be unique).
 
 `actions[task]` can be one of the following
 
@@ -89,7 +91,7 @@ For each task that fails, the error returned will be aggregated under `err[task]
 
 ```js
 // initHome.js
-// 
+//
 var executeMultiple = require('fluxible-action-utils/async/executeMultiple');
 var UserStore = require('app/stores/UserStore');
 
@@ -101,7 +103,7 @@ module.exports = function initHome(context, params, done) {
             isCritical: true
         },
         loadStuffForUser: [
-            'loadUser', 
+            'loadUser',
             {
                 // will be executed after 'loadUser' task completes successfully
                 action: require('../../actions/loadStuffForUser'),
@@ -109,8 +111,8 @@ module.exports = function initHome(context, params, done) {
             }
         ],
         populateUserNotifications: [
-            'loadUH', 
-            'loadStuffForUser', 
+            'loadUH',
+            'loadStuffForUser',
 
             // will be executed after the 'loadUH' and 'loadStuffForUser' tasks complete successfully
             require('../../actions/populateUserNotifications')
@@ -142,8 +144,91 @@ var executeCritical = require('fluxible-action-utils/async/executeCritical');
 
 `executeCritical` allows you to execute a group of actions that are **ALL** deemed critical.  This is a simple shorthand for `executeMultiple` when a group of actions are all critical.
 
+### mixins
+*available as of v0.2.1*
+
+```js
+var mixins = require('fluxible-action-utils/mixins');
+```
+
+Mixins grouped under the `mixins` category are concerned with providing React component mixins that simplify using [`fluxible`](http://fluxible.io) actions.
+
+#### PeriodicActions
+*available as of v0.2.1*
+
+```js
+var PeriodicActionsMixin = require('fluxible-action-utils/mixins/PeriodicActions');
+```
+
+Utility mixin used to make running an action repeatedly (polling an API for example) easier to do.
+
+You can either write code using the methods exposed by the mixin directly, or you can use the `statics` support.
+
+`uuid` must be a unique identifier, attempting to add another action with the same `uuid` as a currently running periodic action will fail to add.
+
+**Statics Example**
+
+```jsx
+// MyReactComponent.jsx
+//
+var PeriodicActionsMixin = require('fluxible-action-utils/mixins/PeriodicActions');
+var myPollingAction = require('./myPollingAction');
+
+module.exports = React.createClass({
+    displayName: 'MyReactComponent',
+    mixins: [PeriodicActionsMixin],
+    statics: {
+        periodicActions: [
+            {
+                uuid: 'MY_UNIQUE_POLLING_ACTION_UUID_STATICS',
+                action: myPollingAction,
+                // Optional params
+                params: {
+                    customPayload: 'payload'
+                }
+                // Optional timeout (Defaults to 100 ms)
+                timeout: 1000
+            }
+        ]
+    },
+    render: function () {
+        return <span>My React Component</span>;
+    }
+});
+```
+
+**Code Example**
+
+```jsx
+var PeriodicActionsMixin = require('fluxible-action-utils/mixins/PeriodicActions');
+var myPollingAction = require('./myPollingAction');
+
+module.exports = React.createClass({
+    displayName: 'MyReactComponent',
+    mixins: [PeriodicActionsMixin],
+    componentDidMount: function () {
+        this.startPeriodicAction(
+            'MY_UNIQUE_POLLING_ACTION_UUID_CODE',
+            myPollingAction,
+            // Optional params
+            {customPayload: 'payload'},
+            // Optional timeout (Defaults to 100 ms)
+            1000
+        );
+    },
+    /* Don't need this, all periodic actions will be stopped automatically on unmount
+    componentWillUnmount: function () {
+        this.stopPeriodicAction('MY_UNIQUE_POLLING_ACTION_UUID_CODE');
+    },
+    */
+    render: function () {
+        return null;
+    }
+});
+```
+
 ## Thanks
-* [@mridgway](https://github.com/mridgway) 
+* [@mridgway](https://github.com/mridgway)
 * [@akshayp](https://github.com/akshayp)
 * [@redonkulus](https://github.com/redonkulus)
 

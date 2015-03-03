@@ -10,6 +10,17 @@ var React = require('react');
 var intervalsMap = {};
 var uuidMap = {};
 
+/**
+ * Return a function that can run the array of actions
+ *
+ * @method  getIntervalRunner
+ *
+ * @param  {FluxibleActionContext} context The fluxible component context (with executeAction)
+ *
+ * @param  {Array.<Function>} actions The actions to run
+ *
+ * @return {Function} Function to run the actions array
+ */
 function getIntervalRunner (context, actions) {
     return function itervalRunner () {
         var i = 0;
@@ -27,6 +38,21 @@ module.exports = {
     contextTypes: {
         executeAction: React.PropTypes.func
     },
+    /**
+     * Start running an action periodically
+     *
+     * @method  startPeriodicAction
+     *
+     * @param  {string} uuid A globally unique identifier
+     *
+     * @param  {Function} action The action to run
+     *
+     * @param  {(Object|Array|string|number|boolean)} [params=undefined] The parameters to pass to the action
+     *
+     * @param  {number} [interval=100] The amount of time to wait between action executions
+     *
+     * @return {boolean} True if adding the periodic action succeeded, false otherwise
+     */
     startPeriodicAction: function (uuid, action, params, interval) {
         var actions = null;
 
@@ -71,6 +97,15 @@ module.exports = {
         this._periodicActionUUIDs.push(uuid);
         return true;
     },
+    /**
+     * Stop running an action periodically
+     *
+     * @method  stopPeriodicAction
+     *
+     * @param  {string} uuid A globally unique identifier
+     *
+     * @return {boolean} True if stopping the periodic action succeeded, false otherwise
+     */
     stopPeriodicAction: function (uuid) {
         var intervalData = null;
         var i = 0;
@@ -106,6 +141,13 @@ module.exports = {
 
         return true;
     },
+    /**
+     * Check statics for periodic actions, if found add them all
+     *
+     * @method  componentDidMount
+     *
+     * @return {void}
+     */
     componentDidMount: function () {
         var i = 0;
         var len = 0;
@@ -122,6 +164,13 @@ module.exports = {
             this.startPeriodicAction(actionData.uuid, actionData.action, actionData.params, actionData.interval);
         }
     },
+    /**
+     * Stop all periodic actions registered on this component
+     *
+     * @method  componentWillUnmount
+     *
+     * @return {void}
+     */
     componentWillUnmount: function () {
         var i = 0;
         var len = 0;
