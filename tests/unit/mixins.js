@@ -6,7 +6,7 @@ var sinon = require('sinon');
 var expect = require('chai').expect;
 var jsdom = require('jsdom');
 var React = require('react');
-var PeriodicActionsMixin = require('../../../mixins/PeriodicActions');
+var PeriodicActionsMixin = require('./../../mixins').PeriodicActions;
 
 GLOBAL.document = jsdom.jsdom('<!doctype html><html><body></body></html>');
 GLOBAL.window = GLOBAL.document.parentWindow;
