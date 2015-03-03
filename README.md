@@ -145,7 +145,7 @@ var executeCritical = require('fluxible-action-utils/async/executeCritical');
 `executeCritical` allows you to execute a group of actions that are **ALL** deemed critical.  This is a simple shorthand for `executeMultiple` when a group of actions are all critical.
 
 ### mixins
-*available as of v0.2.1*
+*available as of v0.2.0*
 
 ```js
 var mixins = require('fluxible-action-utils/mixins');
@@ -154,7 +154,7 @@ var mixins = require('fluxible-action-utils/mixins');
 Mixins grouped under the `mixins` category are concerned with providing React component mixins that simplify using [`fluxible`](http://fluxible.io) actions.
 
 #### PeriodicActions
-*available as of v0.2.1*
+*available as of v0.2.0*
 
 ```js
 var PeriodicActionsMixin = require('fluxible-action-utils/mixins/PeriodicActions');
