@@ -10,13 +10,56 @@
 
 utility methods to aid in writing [actions](http://fluxible.io/api/fluxible-context.html#executeaction-action-payload-callback-) for [fluxible](http://fluxible.io) based applications.
 
-## Links
-* [async.auto](https://github.com/caolan/async#autotasks-callback)
-    - used under the hood to actually handle task/action depedency management. (thanks to [@caolan](https://github.com/caolan))
+## Modularized Builds/Requires
+The utility library provides modularized methods, and method categories to aid in providing smaller [browserify](http://browserify.org/) and [webpack](http://webpack.github.io/) builds.
 
-## Usage
-### executeMultiple(context, actions, [done])
-*available as of v0.1.0*
+```js
+var actionUtils = require('fluxible-action-utils');
+```
+
+Will require the entire library, including **all** available methods grouped under their respective method categories.
+
+For example, the following are equivalent (but will result in varying sized [webpack](http://webpack.github.io/) builds)
+
+### Full Library (results in **largest** build)
+```js
+var executeMultiple = require('fluxible-action-utils').async.executeMultiple;
+```
+
+### Category
+```js
+var executeMultiple = require('fluxible-action-utils/async').executeMultiple;
+```
+
+### Method (results in smallest build)
+```js
+var executeMultiple = require('fluxible-action-utils/async/executeMultiple');
+```
+
+## API
+* [`async`](#async)
+    - [`executeMultiple`](#executemultiple-context-actions-done)
+    - [`exectueCritical`](#executecritical-context-actions-done)
+
+===
+
+### async
+*available as of v0.2.0*
+
+```js
+var asyncActionUtils = require('fluxible-action-utils/async');
+```
+
+Methods grouped under the `async` category are concerned with providing methods that aid in managing the asynchronous control flow of [`fluxible`](http://fluxible.io) actions. 
+
+[async.auto](https://github.com/caolan/async#autotasks-callback) is used under the hood to do the actual heavy lifting (thanks to [@caolan](https://github.com/caolan))
+
+#### executeMultiple (context, actions, [done])
+*available as of v0.2.0*
+
+```js
+var executeMultiple = require('fluxible-action-utils/async/executeMultiple');
+```
 
 Utility method used to execute multiple actions in parallel where possible. Each key in `actions` represents a `task` to be executed (and should be unique). 
 
@@ -34,16 +77,16 @@ Signature `function (err, results)`
 
 For each task that fails, the error returned will be aggregated under `err[task]`.
 
-Example
+**Example**
 
 ```js
 // initHome.js
-
-var actionUtils = require('fluxible-action-utils');
+// 
+var executeMultiple = require('fluxible-action-utils/async/executeMultiple');
 var UserStore = require('app/stores/UserStore');
 
 module.exports = function initHome(context, params, done) {
-    actionUtils.executeMultiple(context, {
+    executeMultiple(context, {
         loadUH: require('UH').actions.load,
         loadUser: {
             action: require('app/actions/loadUser'),
@@ -81,10 +124,15 @@ module.exports = function initHome(context, params, done) {
     });
 };
 ```
-### executeCritical(context, actions, [done])
-*available as of v0.1.0*
 
-executeCritical allows you to execute a group of actions that are ALL deemed critical.  This is a simple shorthand for executeMultiple when a group of actions are all critical.
+#### executeCritical (context, actions, [done])
+*available as of v0.2.0*
+
+```js
+var executeCritical = require('fluxible-action-utils/async/executeCritical');
+```
+
+`executeCritical` allows you to execute a group of actions that are **ALL** deemed critical.  This is a simple shorthand for `executeMultiple` when a group of actions are all critical.
 
 ## Thanks
 * [@mridgway](https://github.com/mridgway) 
