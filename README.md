@@ -36,6 +36,14 @@ var executeMultiple = require('fluxible-action-utils/async').executeMultiple;
 var executeMultiple = require('fluxible-action-utils/async/executeMultiple');
 ```
 
+:rotating_light: **WARNING** :rotating_light:
+
+Methods inside the `internals` directory/category are not explicitely exported and are considered unstable. 
+
+require externally at your own risk as breaking changes inside `internals` will not be considered `breaking` for the library.
+
+===
+
 ## API
 * [`async`](#async)
     - [`executeMultiple`](#executemultiple-context-actions-done)
