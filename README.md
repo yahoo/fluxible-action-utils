@@ -49,7 +49,7 @@ require externally at your own risk as breaking changes inside `internals` will 
     - [`executeMultiple`](#executemultiple-context-actions-done)
     - [`exectueCritical`](#executecritical-context-actions-done)
 * [`mixins`](#mixins)
-    - [`PeriodicActions`](#PeriodicActions)
+    - [`PeriodicActions`](#periodicactions)
 
 ===
 
