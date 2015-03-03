@@ -91,7 +91,7 @@ For each task that fails, the error returned will be aggregated under `err[task]
 
 ```js
 // initHome.js
-//
+
 var executeMultiple = require('fluxible-action-utils/async/executeMultiple');
 var UserStore = require('app/stores/UserStore');
 
@@ -170,7 +170,7 @@ You can either write code using the methods exposed by the mixin directly, or yo
 
 ```jsx
 // MyReactComponent.jsx
-//
+
 var PeriodicActionsMixin = require('fluxible-action-utils/mixins/PeriodicActions');
 var myPollingAction = require('./myPollingAction');
 
@@ -200,6 +200,8 @@ module.exports = React.createClass({
 **Code Example**
 
 ```jsx
+// MyReactComponent.jsx
+
 var PeriodicActionsMixin = require('fluxible-action-utils/mixins/PeriodicActions');
 var myPollingAction = require('./myPollingAction');
 
