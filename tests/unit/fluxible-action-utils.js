@@ -8,7 +8,8 @@ var webpack = require('webpack');
 
 describe('fluxible-action-utils', function () {
     var SUPPORTED = [
-        'async'
+        'async',
+        'mixins'
     ];
 
     var index;

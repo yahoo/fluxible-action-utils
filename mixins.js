@@ -7,6 +7,5 @@
 'use strict';
 
 module.exports = {
-    async: require('./async'),
-    mixins: require('./mixins')
+    PeriodicActions: require('./mixins/PeriodicActions')
 };

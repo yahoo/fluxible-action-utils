@@ -1,0 +1,213 @@
+/* global describe, it */
+
+'use strict';
+
+var sinon = require('sinon');
+var expect = require('chai').expect;
+var jsdom = require('jsdom');
+var React = require('react');
+var PeriodicActionsMixin = require('./../../mixins').PeriodicActions;
+
+GLOBAL.document = jsdom.jsdom('<!doctype html><html><body></body></html>');
+GLOBAL.window = GLOBAL.document.parentWindow;
+GLOBAL.navigator = GLOBAL.window.navigator;
+
+function renderComponent (classSpec, container) {
+    var _classSpec = {
+        mixins: [PeriodicActionsMixin],
+        render: function () {
+            return React.createElement('span', null, '');
+        }
+    };
+
+    Object.keys(classSpec).forEach(function (key) {
+        _classSpec[key] = classSpec[key];
+    });
+
+    React.render(
+        React.createElement(
+            React.createClass({
+                childContextTypes: {
+                    executeAction: React.PropTypes.func
+                },
+                getChildContext: function () {
+                    return {
+                        executeAction: function (action, params) {
+                            action(params);
+                        }
+                    };
+                },
+                render: function () {
+                    return React.createElement(
+                        React.createClass(_classSpec)
+                    );
+                }
+            })
+        ),
+        container
+    );
+}
+
+function unmount (container) {
+    React.render(
+        React.createElement(
+            React.createClass({
+                render: function () {
+                    return null;
+                }
+            })
+        ),
+        container
+    );
+}
+
+describe('PeriodicActions', function () {
+    it('will fire periodic actions and stop', function () {
+        // We'll need to be able to speed up time
+        var clock = sinon.useFakeTimers();
+
+        var div = GLOBAL.document.createElement('div');
+        var called = 0;
+
+        // Mount a component using the mixin
+        renderComponent({
+            statics: {
+                periodicActions: [
+                    {
+                        uuid: 'UNIQUE_ID',
+                        action: function (params) {
+                            called += params.add;
+                        },
+                        params: {
+                            add: 1
+                        },
+                        interval: 10
+                    }
+                ]
+            }
+        }, div);
+
+        // Let the clock tick so it fires off actions
+        clock.tick(501);
+        expect(called).to.equal(50);
+
+        clock.tick(500);
+        expect(called).to.equal(100);
+
+        // Unmount the above component
+        unmount(div);
+
+        // Advance the clock again, actions should not have fired
+        clock.tick(1001);
+        expect(called).to.equal(100);
+
+        // Cleanup
+        clock.restore();
+    });
+
+    it('will not work without uuid', function () {
+        // We'll need to be able to speed up time
+        var clock = sinon.useFakeTimers();
+
+        var div = GLOBAL.document.createElement('div');
+        var called = 0;
+
+        // Mount a component using the mixin
+        renderComponent({
+            statics: {
+                periodicActions: [
+                    {
+                        action: function () {
+                            called += 1;
+                        },
+                        interval: 10
+                    }
+                ]
+            }
+        }, div);
+
+        // Let the clock tick, will do nothing
+        clock.tick(501);
+        expect(called).to.equal(0);
+
+        clock.tick(500);
+        expect(called).to.equal(0);
+
+        // Unmount the above component
+        unmount(div);
+
+        // Cleanup
+        clock.restore();
+    });
+
+    it('will not work without an action', function () {
+        var div = GLOBAL.document.createElement('div');
+
+        // Mount a component using the mixin
+        renderComponent({
+            componentDidMount: function () {
+                expect(this.startPeriodicAction('UNIQUE_ID')).to.equal(false);
+                expect(this.stopPeriodicAction('UNIQUE_ID')).to.equal(false);
+            }
+        }, div);
+
+        // Unmount the above component
+        unmount(div);
+    });
+
+    it('can add and remove many actions', function () {
+        var div = GLOBAL.document.createElement('div');
+        function noop () {
+            return;
+        }
+
+        // Mount a component using the mixin
+        renderComponent({
+            componentDidMount: function () {
+                expect(this.startPeriodicAction('UNIQUE_ID', noop, 100)).to.equal(true);
+                expect(this.startPeriodicAction('UNIQUE_ID_2', noop)).to.equal(true);
+                expect(this.stopPeriodicAction('UNIQUE_ID_2')).to.equal(true);
+                expect(this.stopPeriodicAction('UNIQUE_ID')).to.equal(true);
+            }
+        }, div);
+
+        // Unmount the above component
+        unmount(div);
+    });
+
+    it('fails to remove non-string uuid', function () {
+        var div = GLOBAL.document.createElement('div');
+        function noop () {
+            return;
+        }
+
+        // Mount a component using the mixin
+        renderComponent({
+            componentDidMount: function () {
+                expect(this.startPeriodicAction('0', noop)).to.equal(true);
+                expect(this.stopPeriodicAction(0)).to.equal(false);
+            }
+        }, div);
+
+        // Unmount the above component
+        unmount(div);
+    });
+
+    it('will not mount two actions with the same uuid', function () {
+        var div = GLOBAL.document.createElement('div');
+        function noop () {
+            return;
+        }
+
+        // Mount a component using the mixin
+        renderComponent({
+            componentDidMount: function () {
+                expect(this.startPeriodicAction('0', noop)).to.equal(true);
+                expect(this.startPeriodicAction('0', noop)).to.equal(false);
+            }
+        }, div);
+
+        // Unmount the above component
+        unmount(div);
+    });
+});
