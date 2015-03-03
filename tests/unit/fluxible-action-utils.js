@@ -6,11 +6,9 @@ var ROOT_DIR = require('path').resolve(__dirname, '../..');
 var expect = require('chai').expect;
 var webpack = require('webpack');
 
-describe('index', function () {
-    var SUPPORTED_METHODS = [
-        'toAsyncTask',
-        'executeMultiple',
-        'executeCritical'
+describe('fluxible-action-utils', function () {
+    var SUPPORTED = [
+        'async'
     ];
 
     var index;
@@ -19,9 +17,9 @@ describe('index', function () {
         index = require(ROOT_DIR);
     });
 
-    it('should support ' + SUPPORTED_METHODS.join(', '), function () {
-        SUPPORTED_METHODS.forEach(function (method) {
-            expect(index).to.respondTo(method);
+    it('should support ' + SUPPORTED.join(', '), function () {
+        SUPPORTED.forEach(function (method) {
+            expect(index).to.have.property(method);
         });
     });
 

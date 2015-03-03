@@ -7,5 +7,7 @@
 'use strict';
 
 module.exports = {
-    async: require('./async')
+    executeCritical: require('./async/executeCritical'),
+    executeMultiple: require('./async/executeMultiple'),
+    toAsyncTask: require('./async/toAsyncTask')
 };
