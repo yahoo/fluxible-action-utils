@@ -2,12 +2,12 @@
 
 'use strict';
 
-var ROOT_DIR = require('path').resolve(__dirname, '../../..');
-var async = require('async');
+var ROOT_DIR = require('path').resolve(__dirname, '../..');
 var expect = require('chai').expect;
+var async = require('async');
 
-describe('fluxible-action-utils', function () {
-    var actionUtils;
+describe('fluxible-action-utils.async', function () {
+    var actionUtilsAsync;
 
     var mockContext = {
         name: 'mockContext',
@@ -30,8 +30,7 @@ describe('fluxible-action-utils', function () {
     }
 
     before(function () {
-        actionUtils = require(ROOT_DIR + '/libs/fluxible-action-utils');
-        actionUtils._toAsyncTask = actionUtils.toAsyncTask;
+        actionUtilsAsync = require(ROOT_DIR + '/async');
     });
 
     describe('#toAsyncTask', function () {
@@ -40,16 +39,16 @@ describe('fluxible-action-utils', function () {
         };
 
         it('should return a function', function () {
-            expect(actionUtils.toAsyncTask()).to.be.a('function');
+            expect(actionUtilsAsync.toAsyncTask()).to.be.a('function');
         });
 
         it('should call the action with the proper arguments', function (done) {
-            var task = actionUtils.toAsyncTask(mockAction(undefined, undefined, mockParams), mockContext, mockParams);
+            var task = actionUtilsAsync.toAsyncTask(mockAction(undefined, undefined, mockParams), mockContext, mockParams);
             task(done);
         });
 
         it('should continue on error by default', function (done) {
-            var task = actionUtils.toAsyncTask(mockAction(mockError, undefined, mockParams), mockContext, mockParams);
+            var task = actionUtilsAsync.toAsyncTask(mockAction(mockError, undefined, mockParams), mockContext, mockParams);
 
             task(function (err, data) {
                 expect(err).to.not.exist;
@@ -59,7 +58,7 @@ describe('fluxible-action-utils', function () {
         });
 
         it('should not continue on error if "true" is passed as a fourth param', function (done) {
-            var task = actionUtils.toAsyncTask(mockAction(mockError, undefined, mockParams),
+            var task = actionUtilsAsync.toAsyncTask(mockAction(mockError, undefined, mockParams),
                 mockContext, mockParams, true);
 
             task(function (err, data) {
@@ -70,7 +69,7 @@ describe('fluxible-action-utils', function () {
 
         it('should not continue on error if "true" is passed as a fourth param, and it should wrap the error under' +
             'the provided taskName', function (done) {
-            var task = actionUtils.toAsyncTask(mockAction(mockError, undefined, mockParams),
+            var task = actionUtilsAsync.toAsyncTask(mockAction(mockError, undefined, mockParams),
                 mockContext, mockParams, true, 'foo');
 
             task(function (err, data) {
@@ -84,7 +83,7 @@ describe('fluxible-action-utils', function () {
 
     describe('#executeMultiple', function () {
         it('should support not passing a "done" callback', function () {
-            actionUtils.executeMultiple(mockContext, {
+            actionUtilsAsync.executeMultiple(mockContext, {
                 foo: mockAction(null, 'foo'),
                 bar: {
                     action: mockAction(null, 'bar'),
@@ -121,7 +120,7 @@ describe('fluxible-action-utils', function () {
                 fubar: ['bar', fubar]
             };
 
-            actionUtils.executeMultiple(mockContext, tasks, function (err, results) {
+            actionUtilsAsync.executeMultiple(mockContext, tasks, function (err, results) {
                 expect(err).to.not.exist;
                 expect(results).to.be.an('object').and.deep.equal({
                     foo: 'foo',
@@ -161,7 +160,7 @@ describe('fluxible-action-utils', function () {
             };
 
             function run (cb) {
-                actionUtils.executeMultiple(mockContext, tasks, function (err, results) {
+                actionUtilsAsync.executeMultiple(mockContext, tasks, function (err, results) {
                     expect(err).to.not.exist;
                     expect(results).to.be.an('object').and.deep.equal({
                         foo: 'foo',
@@ -202,7 +201,7 @@ describe('fluxible-action-utils', function () {
                     baz: baz
                 };
 
-                actionUtils.executeMultiple(mockContext, tasks, function (err, results) {
+                actionUtilsAsync.executeMultiple(mockContext, tasks, function (err, results) {
                     expect(err).to.exist.and.deep.equal({
                         foo: mockError
                     });
@@ -235,7 +234,7 @@ describe('fluxible-action-utils', function () {
                 baz: baz
             };
 
-            actionUtils.executeMultiple(mockContext, tasks, function (err, results) {
+            actionUtilsAsync.executeMultiple(mockContext, tasks, function (err, results) {
                 expect(err).to.be.an('object').and.deep.equal({
                     foo: 'foo',
                     bar: 'bar',
@@ -252,7 +251,7 @@ describe('fluxible-action-utils', function () {
     });
     describe('#executeCritical', function () {
         it('should support not passing a "done" callback', function () {
-            actionUtils.executeCritical(mockContext, {
+            actionUtilsAsync.executeCritical(mockContext, {
                 foo: mockAction(null, 'foo'),
                 bar: {
                     action: mockAction(null, 'bar')
@@ -287,7 +286,7 @@ describe('fluxible-action-utils', function () {
                 fubar: ['bar', fubar]
             };
 
-            actionUtils.executeCritical(mockContext, tasks, function (err, results) {
+            actionUtilsAsync.executeCritical(mockContext, tasks, function (err, results) {
                 expect(err).to.not.exist;
                 expect(results).to.be.an('object').and.deep.equal({
                     foo: 'foo',
@@ -321,7 +320,7 @@ describe('fluxible-action-utils', function () {
                     baz: baz
                 };
 
-                actionUtils.executeCritical(mockContext, tasks, function (err, results) {
+                actionUtilsAsync.executeCritical(mockContext, tasks, function (err, results) {
                     expect(err).to.exist.and.deep.equal({
                         foo: mockError
                     });
