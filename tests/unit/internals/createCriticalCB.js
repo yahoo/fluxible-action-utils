@@ -5,9 +5,9 @@
 var ROOT_DIR = require('path').resolve(__dirname, '../../..');
 
 var expect = require('chai').expect;
-var createCriticalCB = require(ROOT_DIR + '/libs/createCriticalCB.js');
+var createCriticalCB = require(ROOT_DIR + '/internals/createCriticalCB.js');
 
-describe('createCriticalCB', function () {
+describe('fluxible-action-utils.internals#createCriticalCB', function () {
     it('should return a callback that is passthrough by default', function (done) {
         var originalCB = function (err, data) {
             expect(err).to.equal('bad request');

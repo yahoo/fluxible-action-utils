@@ -5,9 +5,9 @@
 var ROOT_DIR = require('path').resolve(__dirname, '../../..');
 
 var expect = require('chai').expect;
-var continueOnError = require(ROOT_DIR + '/libs/continueOnError.js');
+var continueOnError = require(ROOT_DIR + '/internals/continueOnError.js');
 
-describe('continueOnError', function () {
+describe('fluxible-action-utils.internals#continueOnError', function () {
     it('should call callback with data if the returned function is passed data with no error', function (cb) {
         var payload = 'actual data';
         var callback = function (err, data) {
