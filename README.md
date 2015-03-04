@@ -185,7 +185,7 @@ module.exports = React.createClass({
                 // Optional params
                 params: {
                     customPayload: 'payload'
-                }
+                },
                 // Optional timeout (Defaults to 100 ms)
                 timeout: 1000
             }
@@ -233,6 +233,7 @@ module.exports = React.createClass({
 * [@mridgway](https://github.com/mridgway)
 * [@akshayp](https://github.com/akshayp)
 * [@redonkulus](https://github.com/redonkulus)
+* [@zeikjt](https://github.com/zeikjt)
 
 ## License
 This software is free to use under the Yahoo Inc. BSD license. See the [LICENSE file](https://github.com/yahoo/fluxible-action-utils/blob/master/LICENSE.md) for license text and copyright information.
