@@ -151,7 +151,7 @@ var executeCritical = require('fluxible-action-utils/async/executeCritical');
 var mixins = require('fluxible-action-utils/mixins');
 ```
 
-Mixins grouped under the `mixins` category are concerned with providing React component mixins that simplify using [`fluxible`](http://fluxible.io) actions.
+Mixins grouped under the `mixins` category are concerned with providing React [component mixins](http://facebook.github.io/react/docs/reusable-components.html#mixins) that simplify using [`fluxible`](http://fluxible.io) actions.
 
 #### PeriodicActions
 *available as of v0.2.0*
