@@ -127,10 +127,12 @@ module.exports = function initHome(context, params, done) {
             if(err.loadStuffForUser) {
                 context.dispatch('RECOVERABLE', err.loadStuffForUser);
             }
-
+            done();
             return;
         }
         // Yay! no errors
+        // ...
+        done();
     });
 };
 ```
