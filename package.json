@@ -7,6 +7,7 @@
     "type": "git",
     "url": "git@github.com:yahoo/fluxible-action-utils.git#master"
   },
+  "bugs": "https://github.com/yahoo/fluxible-action-utils/issues",
   "scripts": {
     "cover": "istanbul cover --dir artifacts -- _mocha tests/unit --recursive --reporter tap",
     "devtest": "mocha tests/unit --recursive --reporter spec",
