@@ -12,6 +12,10 @@ GLOBAL.document = jsdom.jsdom('<!doctype html><html><body></body></html>');
 GLOBAL.window = GLOBAL.document.parentWindow;
 GLOBAL.navigator = GLOBAL.window.navigator;
 
+function mockExecuteAction (action, params) {
+    action(params);
+}
+
 function renderComponent (classSpec, container) {
     var _classSpec = {
         mixins: [PeriodicActionsMixin],
@@ -32,9 +36,7 @@ function renderComponent (classSpec, container) {
                 },
                 getChildContext: function () {
                     return {
-                        executeAction: function (action, params) {
-                            action(params);
-                        }
+                        executeAction: mockExecuteAction
                     };
                 },
                 render: function () {
