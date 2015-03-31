@@ -6,7 +6,6 @@
 
 'use strict';
 
-var React = require('react');
 var intervalsMap = {};
 var uuidMap = {};
 
@@ -36,7 +35,11 @@ function getIntervalRunner (context, actions) {
 
 module.exports = {
     contextTypes: {
-        executeAction: React.PropTypes.func
+        executeAction: function (props, propName) {
+            if (typeof props[propName] !== 'function') {
+                return new Error('Validation failed, function expected!');
+            }
+        }
     },
     /**
      * Start running an action periodically
