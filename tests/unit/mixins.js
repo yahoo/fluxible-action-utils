@@ -64,6 +64,35 @@ function unmount (container) {
 }
 
 describe('PeriodicActions', function () {
+    it('has a custom validator for context.executeAction', function () {
+        var contextTypes = PeriodicActionsMixin.contextTypes;
+        var executeActionValidator = null;
+
+        expect(contextTypes).to.be.an('object');
+
+        executeActionValidator = contextTypes.executeAction;
+        expect(executeActionValidator).to.be.a('function');
+
+        // Test inputs
+        [
+            false,
+            true,
+            null,
+            undefined,
+            0,
+            10,
+            '',
+            'nope',
+            /test/,
+            {},
+            []
+        ].forEach(function (value) {
+            expect(executeActionValidator({executeAction: value}, 'executeAction')).to.be.an.instanceof(Error);
+        });
+
+        expect(executeActionValidator({executeAction: function () {}}, 'executeAction')).to.be.an('undefined');
+    });
+
     it('will fire periodic actions and stop', function () {
         // We'll need to be able to speed up time
         var clock = sinon.useFakeTimers();
