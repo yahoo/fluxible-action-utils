@@ -90,7 +90,7 @@ describe('PeriodicActions', function () {
             expect(executeActionValidator({executeAction: value}, 'executeAction')).to.be.an.instanceof(Error);
         });
 
-        expect(executeActionValidator({executeAction: function () {}}, 'executeAction')).to.be.an('undefined');
+        expect(executeActionValidator({executeAction: function () {}}, 'executeAction')).to.be.undefined;
     });
 
     it('will fire periodic actions and stop', function () {
