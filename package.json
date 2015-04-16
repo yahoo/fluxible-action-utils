@@ -5,7 +5,7 @@
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "git@github.com:yahoo/fluxible-action-utils.git#master"
+    "url": "https://github.com/yahoo/fluxible-action-utils"
   },
   "bugs": "https://github.com/yahoo/fluxible-action-utils/issues",
   "scripts": {
