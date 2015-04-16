@@ -8,7 +8,11 @@
 
 [![Join the chat at https://gitter.im/yahoo/fluxible-action-utils](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/yahoo/fluxible-action-utils?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-utility methods to aid in writing [actions](http://fluxible.io/api/fluxible-context.html#executeaction-action-payload-callback-) for [fluxible](http://fluxible.io) based applications.
+Utility methods to aid in writing [actions](http://fluxible.io/api/fluxible-context.html#executeaction-action-payload-callback-) for [fluxible](http://fluxible.io) based applications.
+
+```bash
+$ npm install --save fluxible-action-utils
+```
 
 ## Modularized Builds/Requires
 The utility library provides modularized methods, and method categories to aid in providing smaller [browserify](http://browserify.org/) and [webpack](http://webpack.github.io/) builds.
