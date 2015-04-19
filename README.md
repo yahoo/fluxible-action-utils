@@ -51,7 +51,7 @@ require externally at your own risk as breaking changes inside `internals` will 
 ## API
 * [`async`](#async)
     - [`executeMultiple`](#executemultiple-context-actions-done)
-    - [`exectueCritical`](#executecritical-context-actions-done)
+    - [`executeCritical`](#executecritical-context-actions-done)
 * [`mixins`](#mixins)
     - [`PeriodicActions`](#periodicactions)
 
