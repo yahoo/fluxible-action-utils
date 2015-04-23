@@ -235,6 +235,9 @@ module.exports = React.createClass({
 });
 ```
 
+## FAQ
+* [what is a **critical** action?](https://github.com/yahoo/fluxible-action-utils/issues/18)
+
 ## Thanks
 * [@mridgway](https://github.com/mridgway)
 * [@akshayp](https://github.com/akshayp)
