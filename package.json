@@ -1,7 +1,7 @@
 {
   "name": "fluxible-action-utils",
   "description": "utility methods to aid in writing actions for fluxible based applications.",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "main": "index.js",
   "repository": {
     "type": "git",
