@@ -1,7 +1,7 @@
 {
   "name": "fluxible-action-utils",
   "description": "utility methods to aid in writing actions for fluxible based applications.",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "main": "index.js",
   "repository": {
     "type": "git",
@@ -15,7 +15,7 @@
     "test": "npm run lint && npm run cover"
   },
   "dependencies": {
-    "async": "^1.0.0"
+    "run-auto": "^1.1.0"
   },
   "devDependencies": {
     "chai": "^3.0",
@@ -27,6 +27,7 @@
     "mockery": "^1.0",
     "pre-commit": "^1.0",
     "react": ">=0.12.0 <=0.13.x",
+    "run-series": "^1.1.0",
     "sinon": "^1.0",
     "webpack": "^1.0"
   },

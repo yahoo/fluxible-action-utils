@@ -6,7 +6,7 @@
 
 'use strict';
 
-var async = require('async');
+var auto = require('run-auto');
 var getTasksForAsync = require('./../internals/getTasksForAsync');
 
 /**
@@ -55,9 +55,9 @@ module.exports = function executeCritical (context, actions, done) {
     var tasks = getTasksForAsync(context, actions, true);
 
     if (!done) {
-        async.auto(tasks);
+        auto(tasks);
         return;
     }
 
-    async.auto(tasks, done);
+    auto(tasks, done);
 };
