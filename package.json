@@ -20,7 +20,7 @@
   "devDependencies": {
     "chai": "^3.0",
     "coveralls": "^2.11.1",
-    "eslint": "^0.23.0",
+    "eslint": "^0.24.0",
     "istanbul": "^0.3.5",
     "jsdom": "^3.0",
     "mocha": "^2.0",
