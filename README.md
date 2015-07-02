@@ -66,7 +66,7 @@ var asyncActionUtils = require('fluxible-action-utils/async');
 
 Methods grouped under the `async` category are concerned with providing methods that aid in managing the asynchronous control flow of [`fluxible`](http://fluxible.io) actions.
 
-[async.auto](https://github.com/caolan/async#autotasks-callback) is used under the hood to do the actual heavy lifting (thanks to [@caolan](https://github.com/caolan))
+[run-auto](https://github.com/feross/run-auto#usage) is used under the hood to do the actual heavy lifting (thanks to [@feross](https://github.com/feross))
 
 #### executeMultiple (context, actions, [done])
 *available as of v0.2.0*

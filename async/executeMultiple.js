@@ -6,13 +6,13 @@
 
 'use strict';
 
-var async = require('async');
+var auto = require('run-auto');
 var getTasksForAsync = require('./../internals/getTasksForAsync');
 
 /**
  * execute multiple actions.
  * This method uses a Task interface similar
- * to "async.auto" but expects actions (or action "objects") instead of
+ * to "auto" but expects actions (or action "objects") instead of
  * async tasks.
  *
  * @see https://github.com/caolan/async#autotasks-callback
@@ -55,11 +55,11 @@ module.exports = function executeMultiple (context, actions, done) {
     var tasks = getTasksForAsync(context, actions, false);
 
     if (!done) {
-        async.auto(tasks);
+        auto(tasks);
         return;
     }
 
-    async.auto(tasks, function (err, results) {
+    auto(tasks, function (err, results) {
         Object.keys(results).forEach(function (taskName) {
             var taskErr = null;
             if (results[taskName]) {

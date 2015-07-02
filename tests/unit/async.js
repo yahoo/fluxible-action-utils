@@ -4,7 +4,7 @@
 
 var ROOT_DIR = require('path').resolve(__dirname, '../..');
 var expect = require('chai').expect;
-var async = require('async');
+var series = require('run-series');
 
 describe('fluxible-action-utils.async', function () {
     var actionUtilsAsync;
@@ -172,7 +172,7 @@ describe('fluxible-action-utils.async', function () {
                 });
             }
 
-            async.series([
+            series([
                 run,
                 run
             ], done);
