@@ -101,6 +101,29 @@ module.exports = {
         return true;
     },
     /**
+     * Check statics for periodic actions, if found add them all
+     *
+     * @method  startPeriodicActions
+     *
+     * @return {void}
+     */
+    startPeriodicActions: function () {
+        var i = 0;
+        var len = 0;
+        var actionData = null;
+
+        if (!(this.constructor.periodicActions instanceof Array)) {
+            return;
+        }
+
+        len = this.constructor.periodicActions.length;
+
+        for (; i < len; i += 1) {
+            actionData = this.constructor.periodicActions[i];
+            this.startPeriodicAction(actionData.uuid, actionData.action, actionData.params, actionData.interval);
+        }
+    },
+    /**
      * Stop running an action periodically
      *
      * @method  stopPeriodicAction
@@ -145,36 +168,13 @@ module.exports = {
         return true;
     },
     /**
-     * Check statics for periodic actions, if found add them all
-     *
-     * @method  componentDidMount
-     *
-     * @return {void}
-     */
-    componentDidMount: function () {
-        var i = 0;
-        var len = 0;
-        var actionData = null;
-
-        if (!(this.constructor.periodicActions instanceof Array)) {
-            return;
-        }
-
-        len = this.constructor.periodicActions.length;
-
-        for (; i < len; i += 1) {
-            actionData = this.constructor.periodicActions[i];
-            this.startPeriodicAction(actionData.uuid, actionData.action, actionData.params, actionData.interval);
-        }
-    },
-    /**
      * Stop all periodic actions registered on this component
      *
-     * @method  componentWillUnmount
+     * @method  stopPeriodicActions
      *
      * @return {void}
      */
-    componentWillUnmount: function () {
+    stopPeriodicActions: function () {
         var i = 0;
         var len = 0;
         var uuid = '';
@@ -189,5 +189,25 @@ module.exports = {
             uuid = this._periodicActionUUIDs[i];
             this.stopPeriodicAction(uuid);
         }
+    },
+    /**
+     * Provide hook to #startPeriodicActions
+     *
+     * @method  componentDidMount
+     *
+     * @return {void}
+     */
+    componentDidMount: function () {
+        this.startPeriodicActions();
+    },
+    /**
+     * Provide hook to #stopPeriodicActions
+     *
+     * @method  componentWillUnmount
+     *
+     * @return {void}
+     */
+    componentWillUnmount: function () {
+        this.stopPeriodicActions();
     }
 };
