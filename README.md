@@ -180,6 +180,9 @@ You can either write code using the methods exposed by the mixin directly, or yo
 var PeriodicActionsMixin = require('fluxible-action-utils/mixins/PeriodicActions');
 var myPollingAction = require('./myPollingAction');
 
+// Let's say you have a child component that implement the controlling logic for the polling action below
+var ControlComponent = require('./someControlComponent');
+
 module.exports = React.createClass({
     displayName: 'MyReactComponent',
     mixins: [PeriodicActionsMixin],
@@ -198,7 +201,12 @@ module.exports = React.createClass({
         ]
     },
     render: function () {
-        return <span>My React Component</span>;
+        // You can pass the auto-binded component methods to the child component to achieve
+        // custom timing on the dedicated action(s)
+        return <ControlComponent
+                    startPolling={this.startPeriodicActions}
+                    stopPolling={this.stopPeriodicActions}
+               />;
     }
 });
 ```
