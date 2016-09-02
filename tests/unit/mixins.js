@@ -8,9 +8,9 @@ var jsdom = require('jsdom');
 var React = require('react');
 var PeriodicActionsMixin = require('./../../mixins').PeriodicActions;
 
-GLOBAL.document = jsdom.jsdom('<!doctype html><html><body></body></html>');
-GLOBAL.window = GLOBAL.document.parentWindow;
-GLOBAL.navigator = GLOBAL.window.navigator;
+global.document = jsdom.jsdom('<!doctype html><html><body></body></html>');
+global.window = global.document.defaultView;
+global.navigator = global.window.navigator;
 
 function mockExecuteAction (action, params) {
     action(params);
@@ -97,7 +97,7 @@ describe('PeriodicActions', function () {
         // We'll need to be able to speed up time
         var clock = sinon.useFakeTimers();
 
-        var div = GLOBAL.document.createElement('div');
+        var div = global.document.createElement('div');
         var called = 0;
 
         // Mount a component using the mixin
@@ -140,7 +140,7 @@ describe('PeriodicActions', function () {
         // We'll need to be able to speed up time
         var clock = sinon.useFakeTimers();
 
-        var div = GLOBAL.document.createElement('div');
+        var div = global.document.createElement('div');
         var called = 0;
 
         // Mount a component using the mixin
@@ -172,7 +172,7 @@ describe('PeriodicActions', function () {
     });
 
     it('will not work without an action', function () {
-        var div = GLOBAL.document.createElement('div');
+        var div = global.document.createElement('div');
 
         // Mount a component using the mixin
         renderComponent({
@@ -207,7 +207,7 @@ describe('PeriodicActions', function () {
     });
 
     it('fails to remove non-string uuid', function () {
-        var div = GLOBAL.document.createElement('div');
+        var div = global.document.createElement('div');
         function noop () {
             return;
         }
@@ -225,7 +225,7 @@ describe('PeriodicActions', function () {
     });
 
     it('will not mount two actions with the same uuid', function () {
-        var div = GLOBAL.document.createElement('div');
+        var div = global.document.createElement('div');
         function noop () {
             return;
         }
