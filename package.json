@@ -1,3 +1,4 @@
+
 {
   "name": "fluxible-action-utils",
   "description": "utility methods to aid in writing actions for fluxible based applications.",
@@ -15,18 +16,18 @@
     "test": "npm run lint && npm run cover"
   },
   "dependencies": {
-    "run-auto": "^1.1.0"
+    "run-auto": "^2.0.0"
   },
   "devDependencies": {
     "chai": "^3.0",
     "coveralls": "^2.11.1",
-    "eslint": "^0.24.0",
-    "istanbul": "^0.3.5",
-    "jsdom": "^3.0",
-    "mocha": "^2.0",
+    "eslint": "^3.4.0",
+    "istanbul": "^0.4.5",
+    "jsdom": "^9.4.5",
+    "mocha": "^3.0.2",
     "mockery": "^1.0",
     "pre-commit": "^1.0",
-    "react": ">=0.12.0 <=0.14.x",
+    "react": ">=15.3.1",
     "run-series": "^1.1.0",
     "sinon": "^1.0",
     "webpack": "^1.0"
