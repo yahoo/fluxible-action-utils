@@ -1,5 +1,7 @@
 # fluxible-action-utils
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/yahoo/fluxible-action-utils.svg)](https://greenkeeper.io/)
+
 [![npm version](https://badge.fury.io/js/fluxible-action-utils.svg)](http://badge.fury.io/js/fluxible-action-utils)
 [![Build Status](https://travis-ci.org/yahoo/fluxible-action-utils.svg?branch=master)](https://travis-ci.org/yahoo/fluxible-action-utils)
 [![Dependency Status](https://david-dm.org/yahoo/fluxible-action-utils.svg)](https://david-dm.org/yahoo/fluxible-action-utils)
