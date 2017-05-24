@@ -23,7 +23,7 @@
     "eslint": "^3.19.0",
     "istanbul": "^0.4.5",
     "jsdom": "^10.1.0",
-    "mocha": "^3.4.1",
+    "mocha": "3.4.1",
     "mockery": "^2.0.0",
     "pre-commit": "^1.0",
     "react": ">=15.5.4",
