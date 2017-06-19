@@ -7,6 +7,7 @@ var expect = require('chai').expect;
 var jsdom = require('jsdom');
 var React = require('react');
 var PeriodicActionsMixin = require('./../../mixins').PeriodicActions;
+var PropTypes = require('prop-types');
 
 GLOBAL.document = jsdom.jsdom('<!doctype html><html><body></body></html>');
 GLOBAL.window = GLOBAL.document.parentWindow;
@@ -32,7 +33,7 @@ function renderComponent (classSpec, container) {
         React.createElement(
             React.createClass({
                 childContextTypes: {
-                    executeAction: React.PropTypes.func
+                    executeAction: PropTypes.func
                 },
                 getChildContext: function () {
                     return {
