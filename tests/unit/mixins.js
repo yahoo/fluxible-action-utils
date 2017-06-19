@@ -2,15 +2,18 @@
 
 'use strict';
 
+var createReactClass = require('create-react-class');
 var sinon = require('sinon');
 var expect = require('chai').expect;
-var jsdom = require('jsdom');
+var JSDOM = require('jsdom').JSDOM;
 var React = require('react');
+var ReactDOM = require('react-dom');
 var PeriodicActionsMixin = require('./../../mixins').PeriodicActions;
+var PropTypes = require('prop-types');
 
-GLOBAL.document = jsdom.jsdom('<!doctype html><html><body></body></html>');
-GLOBAL.window = GLOBAL.document.parentWindow;
-GLOBAL.navigator = GLOBAL.window.navigator;
+global.window = new JSDOM('<!doctype html><html><body></body></html>').window;
+global.document = global.window.document;
+global.navigator = global.window.navigator;
 
 function mockExecuteAction (action, params) {
     action(params);
@@ -28,11 +31,11 @@ function renderComponent (classSpec, container) {
         _classSpec[key] = classSpec[key];
     });
 
-    React.render(
+    ReactDOM.render(
         React.createElement(
-            React.createClass({
+            createReactClass({
                 childContextTypes: {
-                    executeAction: React.PropTypes.func
+                    executeAction: PropTypes.func
                 },
                 getChildContext: function () {
                     return {
@@ -41,7 +44,7 @@ function renderComponent (classSpec, container) {
                 },
                 render: function () {
                     return React.createElement(
-                        React.createClass(_classSpec)
+                        createReactClass(_classSpec)
                     );
                 }
             })
@@ -51,9 +54,9 @@ function renderComponent (classSpec, container) {
 }
 
 function unmount (container) {
-    React.render(
+    ReactDOM.render(
         React.createElement(
-            React.createClass({
+            createReactClass({
                 render: function () {
                     return null;
                 }
@@ -97,7 +100,7 @@ describe('PeriodicActions', function () {
         // We'll need to be able to speed up time
         var clock = sinon.useFakeTimers();
 
-        var div = GLOBAL.document.createElement('div');
+        var div = global.document.createElement('div');
         var called = 0;
 
         // Mount a component using the mixin
@@ -140,7 +143,7 @@ describe('PeriodicActions', function () {
         // We'll need to be able to speed up time
         var clock = sinon.useFakeTimers();
 
-        var div = GLOBAL.document.createElement('div');
+        var div = global.document.createElement('div');
         var called = 0;
 
         // Mount a component using the mixin
@@ -172,7 +175,7 @@ describe('PeriodicActions', function () {
     });
 
     it('will not work without an action', function () {
-        var div = GLOBAL.document.createElement('div');
+        var div = global.document.createElement('div');
 
         // Mount a component using the mixin
         renderComponent({
@@ -187,7 +190,7 @@ describe('PeriodicActions', function () {
     });
 
     it('can add and remove many actions', function () {
-        var div = GLOBAL.document.createElement('div');
+        var div = global.document.createElement('div');
         function noop () {
             return;
         }
@@ -207,7 +210,7 @@ describe('PeriodicActions', function () {
     });
 
     it('fails to remove non-string uuid', function () {
-        var div = GLOBAL.document.createElement('div');
+        var div = global.document.createElement('div');
         function noop () {
             return;
         }
@@ -225,7 +228,7 @@ describe('PeriodicActions', function () {
     });
 
     it('will not mount two actions with the same uuid', function () {
-        var div = GLOBAL.document.createElement('div');
+        var div = global.document.createElement('div');
         function noop () {
             return;
         }

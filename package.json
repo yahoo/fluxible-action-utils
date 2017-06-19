@@ -9,26 +9,27 @@
   },
   "bugs": "https://github.com/yahoo/fluxible-action-utils/issues",
   "scripts": {
-    "cover": "istanbul cover --dir artifacts -- _mocha tests/unit --recursive --reporter tap",
-    "devtest": "mocha tests/unit --recursive --reporter spec",
     "lint": "eslint .",
-    "test": "npm run lint && npm run cover"
+    "pretest": "npm run lint",
+    "test": "jenkins-mocha tests/unit --recursive --timeout 10000"
   },
   "dependencies": {
-    "run-auto": "^2.0.0"
+    "run-auto": "^1.0.0"
   },
   "devDependencies": {
-    "chai": "^3.0",
-    "coveralls": "^2.11.1",
-    "eslint": "^3.19.0",
-    "istanbul": "^0.4.5",
+    "chai": "^4.0.2",
+    "coveralls": "^2.13.1",
+    "create-react-class": "^15.6.0",
+    "eslint": "^4.0.0",
+    "jenkins-mocha": "^4.1.2",
     "jsdom": "^11.0.0",
-    "mocha": "^3.4.1",
     "mockery": "^2.0.0",
-    "pre-commit": "^1.0",
-    "react": ">=15.5.4",
-    "run-series": "^1.1.0",
-    "sinon": "^2.2.0",
+    "pre-commit": "^1.2.2",
+    "prop-types": "^15.5.10",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
+    "run-series": "^1.1.4",
+    "sinon": "^2.3.4",
     "webpack": "^3.0.0"
   },
   "author": "Mo Kouli <mkouli@yahoo-inc.com>",
