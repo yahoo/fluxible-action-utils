@@ -185,7 +185,7 @@ var myPollingAction = require('./myPollingAction');
 // Let's say you have a child component that implement the controlling logic for the polling action below
 var ControlComponent = require('./someControlComponent');
 
-module.exports = React.createClass({
+module.exports = createReactClass({
     displayName: 'MyReactComponent',
     mixins: [PeriodicActionsMixin],
     statics: {
@@ -221,7 +221,7 @@ module.exports = React.createClass({
 var PeriodicActionsMixin = require('fluxible-action-utils/mixins/PeriodicActions');
 var myPollingAction = require('./myPollingAction');
 
-module.exports = React.createClass({
+module.exports = createReactClass({
     displayName: 'MyReactComponent',
     mixins: [PeriodicActionsMixin],
     componentDidMount: function () {

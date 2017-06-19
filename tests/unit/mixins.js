@@ -2,6 +2,7 @@
 
 'use strict';
 
+var createReactClass = require('create-react-class');
 var sinon = require('sinon');
 var expect = require('chai').expect;
 var jsdom = require('jsdom');
@@ -31,7 +32,7 @@ function renderComponent (classSpec, container) {
 
     React.render(
         React.createElement(
-            React.createClass({
+            createReactClass({
                 childContextTypes: {
                     executeAction: PropTypes.func
                 },
@@ -42,7 +43,7 @@ function renderComponent (classSpec, container) {
                 },
                 render: function () {
                     return React.createElement(
-                        React.createClass(_classSpec)
+                        createReactClass(_classSpec)
                     );
                 }
             })
@@ -54,7 +55,7 @@ function renderComponent (classSpec, container) {
 function unmount (container) {
     React.render(
         React.createElement(
-            React.createClass({
+            createReactClass({
                 render: function () {
                     return null;
                 }
