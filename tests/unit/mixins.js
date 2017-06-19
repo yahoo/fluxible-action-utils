@@ -7,6 +7,7 @@ var sinon = require('sinon');
 var expect = require('chai').expect;
 var jsdom = require('jsdom');
 var React = require('react');
+var ReactDOM = require('react-dom');
 var PeriodicActionsMixin = require('./../../mixins').PeriodicActions;
 var PropTypes = require('prop-types');
 
@@ -30,7 +31,7 @@ function renderComponent (classSpec, container) {
         _classSpec[key] = classSpec[key];
     });
 
-    React.render(
+    ReactDOM.render(
         React.createElement(
             createReactClass({
                 childContextTypes: {
@@ -53,7 +54,7 @@ function renderComponent (classSpec, container) {
 }
 
 function unmount (container) {
-    React.render(
+    ReactDOM.render(
         React.createElement(
             createReactClass({
                 render: function () {
