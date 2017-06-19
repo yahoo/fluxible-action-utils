@@ -5,14 +5,14 @@
 var createReactClass = require('create-react-class');
 var sinon = require('sinon');
 var expect = require('chai').expect;
-var jsdom = require('jsdom');
+var JSDOM = require('jsdom').JSDOM;
 var React = require('react');
 var ReactDOM = require('react-dom');
 var PeriodicActionsMixin = require('./../../mixins').PeriodicActions;
 var PropTypes = require('prop-types');
 
-global.document = jsdom.jsdom('<!doctype html><html><body></body></html>');
-global.window = global.document.parentWindow;
+global.window = new JSDOM('<!doctype html><html><body></body></html>').window;
+global.document = global.window.document;
 global.navigator = global.window.navigator;
 
 function mockExecuteAction (action, params) {
