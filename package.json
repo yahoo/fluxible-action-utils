@@ -12,7 +12,8 @@
     "cover": "istanbul cover --dir artifacts -- _mocha tests/unit --recursive --reporter tap",
     "devtest": "mocha tests/unit --recursive --reporter spec",
     "lint": "eslint .",
-    "test": "npm run lint && npm run cover"
+    "pretest": "npm run lint",
+    "test": "npm run cover"
   },
   "dependencies": {
     "run-auto": "^2.0.0"
