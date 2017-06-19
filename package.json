@@ -9,11 +9,9 @@
   },
   "bugs": "https://github.com/yahoo/fluxible-action-utils/issues",
   "scripts": {
-    "cover": "istanbul cover --dir artifacts -- _mocha tests/unit --recursive --reporter tap",
-    "devtest": "mocha tests/unit --recursive --reporter spec",
     "lint": "eslint .",
     "pretest": "npm run lint",
-    "test": "npm run cover"
+    "test": "jenkins-mocha tests/unit --recursive"
   },
   "dependencies": {
     "run-auto": "^2.0.0"
@@ -23,9 +21,8 @@
     "coveralls": "^2.11.1",
     "create-react-class": "^15.6.0",
     "eslint": "^3.19.0",
-    "istanbul": "^0.4.5",
+    "jenkins-mocha": "^4.1.2",
     "jsdom": "^11.0.0",
-    "mocha": "^3.4.1",
     "mockery": "^2.0.0",
     "pre-commit": "^1.0",
     "prop-types": "^15.5.10",
