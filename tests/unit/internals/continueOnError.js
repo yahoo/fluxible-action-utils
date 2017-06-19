@@ -30,8 +30,7 @@ describe('fluxible-action-utils.internals#continueOnError', function () {
         continueOnError(callback)(error);
     });
 
-    it('should call callback with data[errProp] if the returned function is passed an error and errProp',
-        function (cb) {
+    it('should call callback with data[errProp] if the returned function is passed an error and errProp', function (cb) {
         var error = {status: 404, message: 'Not Found'};
         var callback = function (err, data) {
             expect(err).to.equal(null);
