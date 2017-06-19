@@ -14,7 +14,7 @@
     "test": "jenkins-mocha tests/unit --recursive"
   },
   "dependencies": {
-    "run-auto": "^2.0.0"
+    "run-auto": "^1.0.0"
   },
   "devDependencies": {
     "chai": "^3.0",
