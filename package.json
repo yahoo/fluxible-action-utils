@@ -11,7 +11,7 @@
   "scripts": {
     "lint": "eslint .",
     "pretest": "npm run lint",
-    "test": "jenkins-mocha tests/unit --recursive"
+    "test": "jenkins-mocha tests/unit --recursive --timeout 10000"
   },
   "dependencies": {
     "run-auto": "^1.0.0"
