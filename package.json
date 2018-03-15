@@ -14,7 +14,7 @@
     "test": "jenkins-mocha tests/unit --recursive --timeout 10000"
   },
   "dependencies": {
-    "run-auto": "^1.0.0"
+    "run-auto": "^2.0.1"
   },
   "devDependencies": {
     "chai": "^4.0.2",
