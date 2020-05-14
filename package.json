@@ -22,7 +22,7 @@
     "create-react-class": "^15.6.0",
     "eslint": "^7.0.0",
     "jenkins-mocha": "^8.0.0",
-    "jsdom": "^13.0.0",
+    "jsdom": "^16.2.2",
     "mockery": "^2.0.0",
     "pre-commit": "^1.2.2",
     "prop-types": "^15.5.10",
