@@ -30,7 +30,7 @@
     "react-dom": "^16.0.0",
     "run-series": "^1.1.4",
     "sinon": "^10.0.0",
-    "webpack": "^4.5.0"
+    "webpack": "^5.32.0"
   },
   "author": "Mo Kouli <mkouli@yahoo-inc.com>",
   "contributors": [
