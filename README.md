@@ -2,7 +2,6 @@
 
 [![npm version](https://badge.fury.io/js/fluxible-action-utils.svg)](http://badge.fury.io/js/fluxible-action-utils)
 ![github actions](https://github.com/yahoo/fluxible-action-utils/actions/workflows/test.js.yml/badge.svg)
-
 [![Join the chat at https://gitter.im/yahoo/fluxible-action-utils](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/yahoo/fluxible-action-utils?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 Utility methods to aid in writing [actions](http://fluxible.io/api/fluxible-context.html#executeaction-action-payload-callback-) for [fluxible](http://fluxible.io) based applications.
