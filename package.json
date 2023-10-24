@@ -20,7 +20,7 @@
     "chai": "^4.0.2",
     "create-react-class": "^15.6.0",
     "eslint": "^8.0.0",
-    "jenkins-mocha": "^9.0.0",
+    "jenkins-mocha": "^11.0.0",
     "jsdom": "^22.1.0",
     "mockery": "^2.0.0",
     "pre-commit": "^1.2.2",
