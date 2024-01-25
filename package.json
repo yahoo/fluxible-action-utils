@@ -17,7 +17,7 @@
     "run-auto": "^1.0.0"
   },
   "devDependencies": {
-    "chai": "^4.0.2",
+    "chai": "^5.0.3",
     "create-react-class": "^15.6.0",
     "eslint": "^8.0.0",
     "jenkins-mocha": "^9.0.0",
